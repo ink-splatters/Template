@@ -83,7 +83,12 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     
     var observers: [NSKeyValueObservation] = []
     
-    var bgColorParam = Float4Parameter("Background", [1, 1, 1, 1], .colorpicker)
+    lazy var bgColorParam: Float4Parameter = {
+        Float4Parameter("Background", [1, 1, 1, 1], .colorpicker) { [unowned self] value in
+            renderer.setClearColor(value)
+        }
+    }()
+    
     lazy var blobVisibleParam: BoolParameter = {
         let param = BoolParameter("Show Blob", true, .toggle) { [unowned self] value in
             self.blobMesh.visible = value
@@ -146,7 +151,6 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     }
 
     override func setup() {
-        setupObservers()
         load()
     }
     

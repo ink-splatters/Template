@@ -35,11 +35,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
 
         self.window = window
-        self.viewController = Forge.ViewController(nibName: .init("ViewController"), bundle: Bundle(for: Forge.ViewController.self))
-        guard let view = self.viewController?.view else { return }
+        
         
         let renderer = Renderer()
-        self.viewController.renderer = renderer
+        self.viewController = Forge.ViewController(renderer: renderer)
+        
+        guard let view = self.viewController?.view else { return }
+        
+        
+        
+        
         self.renderer = renderer
         
         guard let contentView = window.contentView else { return }

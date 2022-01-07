@@ -20,7 +20,7 @@ extension Renderer {
         if let inspectorWindow = self.inspectorWindow, let inspector = inspectorWindow.inspectorViewController {
             let panels = inspector.getPanels()
             for panel in panels {
-                if let label = panel.parameters?.label {
+                if let label = panel.title {
                     panelOpenStates[label] = panel.open
                 }
             }
@@ -46,7 +46,7 @@ extension Renderer {
             
             let panels = inspectorViewController.getPanels()
             for panel in panels {
-                if let label = panel.parameters?.label {
+                if let label = panel.title {
                     if let open = panelOpenStates[label] {
                         panel.open = open
                     }
