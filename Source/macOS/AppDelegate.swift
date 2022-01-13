@@ -16,8 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow?
     @IBOutlet var presetsMenu: NSMenu?
     
-    var viewController: Forge.ViewController!
-    weak var renderer: Renderer?
+    var viewController: Forge.ViewController?
     
     fileprivate enum DefaultKey {
         static let editorPathBookmark = "EditorPathBookmark"
@@ -36,16 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         self.window = window
         
-        
-        let renderer = Renderer()
-        self.viewController = Forge.ViewController(renderer: renderer)
-        
+        self.viewController = Forge.ViewController(renderer: Renderer())
         guard let view = self.viewController?.view else { return }
-        
-        
-        
-        
-        self.renderer = renderer
         
         guard let contentView = window.contentView else { return }
         
@@ -60,12 +51,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      
         setupPresetsMenu()
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        self.viewController?.view.removeFromSuperview()
+    
+    func applicationWillTerminate(_ notification: Notification) {
         self.viewController = nil
     }
-
+    
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
@@ -94,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func saveResourcesAssets() {
-        guard let renderer = self.renderer else { return }
+        guard let viewController = self.viewController, let renderer = viewController.renderer as? Renderer else { return }
         renderer.save()
         if let bookmarkDataString = UserDefaults.standard.string(forKey: "ResourcesAssetsPathBookmark"), let bookmarkData = Data(base64Encoded: bookmarkDataString) {
             var isStale: Bool = false
@@ -111,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Toggle Inspector
 
     @IBAction func toggleInspector(_ sender: NSMenuItem) {
-        guard let renderer = self.renderer else { return }
+        guard let viewController = self.viewController, let renderer = viewController.renderer as? Renderer else { return }
         renderer.toggleInspector()
     }
 
@@ -120,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func savePreset(_ sender: NSMenuItem) {
-        guard let renderer = self.renderer else { return }
+        guard let viewController = self.viewController, let renderer = viewController.renderer as? Renderer else { return }
         let msg = NSAlert()
         msg.addButton(withTitle: "OK") // 1st button
         msg.addButton(withTitle: "Cancel") // 2nd button
@@ -143,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func savePresetAs(_ sender: NSMenuItem) {
-        guard let renderer = self.renderer else { return }
+        guard let viewController = self.viewController, let renderer = viewController.renderer as? Renderer else { return }
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.showsTagField = false
@@ -197,7 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func loadPreset(_ sender: NSMenuItem) {
-        guard let renderer = self.renderer else { return }
+        guard let viewController = self.viewController, let renderer = viewController.renderer as? Renderer else { return }
         renderer.loadPreset(sender.title)
                     
         guard let menu = presetsMenu else { return }
@@ -208,7 +198,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openPreset(_ sender: NSMenuItem) {
-        guard let renderer = self.renderer else { return }
+        guard let viewController = self.viewController, let renderer = viewController.renderer as? Renderer else { return }
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = false
         openPanel.canChooseDirectories = true

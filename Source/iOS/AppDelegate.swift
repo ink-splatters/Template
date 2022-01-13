@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         copyResourcesAssetsToDocumentsAssets()
         
-        let viewController = Forge.ViewController(nibName: .init("ViewController"), bundle: Bundle(for: Forge.ViewController.self))
-        viewController.renderer = Renderer()
+        let viewController = Forge.ViewController(renderer: Renderer())
         self.viewController = viewController
         
         guard let view = self.viewController?.view else { return false }

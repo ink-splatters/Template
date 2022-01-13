@@ -607,7 +607,7 @@
 			baseConfigurationReference = 71AD7668443CB36811A963B9 /* Pods-Template iOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CC7PU3PUHS;
+				DEVELOPMENT_TEAM = H5N5GRKN9A;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -627,7 +627,7 @@
 			baseConfigurationReference = 6BCE56ACECC387F4DE7F57C3 /* Pods-Template iOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CC7PU3PUHS;
+				DEVELOPMENT_TEAM = H5N5GRKN9A;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (

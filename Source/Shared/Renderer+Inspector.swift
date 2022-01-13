@@ -74,11 +74,14 @@ extension Renderer {
         }
     }
     
+#endif
+    
+#if os(macOS)
     public func toggleInspector()
     {
         if let inspectorWindow = self.inspectorWindow {
             inspectorWindow.setIsVisible(!inspectorWindow.isVisible)
         }
     }
-    #endif
+#endif
 }
