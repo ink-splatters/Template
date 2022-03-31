@@ -6,7 +6,6 @@ Install Dependencies
 
 ```
 cd Template
-pod install
-open Template.xcworkspace
+open Template.xcodeproj
 ```
 

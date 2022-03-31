@@ -1,9 +1,9 @@
 //
 //  Renderer.swift
-//  Example Shared
+//  Template
 //
 //  Created by Reza Ali on 8/22/19.
-//  Copyright © 2019 Reza Ali. All rights reserved.
+//  Copyright © 2022 Reza Ali. All rights reserved.
 //
 
 import Metal
@@ -11,9 +11,7 @@ import MetalKit
 
 import Forge
 import Satin
-#if os(macOS) || os(iOS)
 import Youi
-#endif
 
 class BlobMaterial: LiveMaterial {}
 
@@ -59,14 +57,14 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     var paramKeys: [String] {
         return [
             "Controls",
-            "Blob Material"
+            "Blob Material",
         ]
     }
     
     var params: [String: ParameterGroup?] {
         return [
             "Controls": appParams,
-            "Blob Material": blobMaterial.parameters
+            "Blob Material": blobMaterial.parameters,
         ]
     }
     
@@ -76,12 +74,8 @@ class Renderer: Forge.Renderer, MaterialDelegate {
         return material
     }()
     
-    #if os(macOS) || os(iOS)
     var inspectorWindow: InspectorWindow?
     var _updateInspector: Bool = true
-    #endif
-    
-    var observers: [NSKeyValueObservation] = []
     
     lazy var bgColorParam: Float4Parameter = {
         Float4Parameter("Background", [1, 1, 1, 1], .colorpicker) { [unowned self] value in
@@ -103,8 +97,11 @@ class Renderer: Forge.Renderer, MaterialDelegate {
         return params
     }()
     
+    var blobGeo = IcoSphereGeometry(radius: 2.0, res: 5)
     lazy var blobMesh: Mesh = {
-        Mesh(geometry: IcoSphereGeometry(radius: 2.0, res: 5), material: blobMaterial)
+        let mesh = Mesh(geometry: blobGeo, material: blobMaterial)
+        mesh.label = "Blob"
+        return mesh
     }()
     
     lazy var scene: Object = {
@@ -142,7 +139,7 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     override func setupMtkView(_ metalKitView: MTKView) {
         metalKitView.sampleCount = 1
         metalKitView.depthStencilPixelFormat = .depth32Float
-        metalKitView.preferredFramesPerSecond = 60
+        metalKitView.preferredFramesPerSecond = 120
     }
         
     deinit {
@@ -161,9 +158,7 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     override func update() {
         blobMaterial.set("Time", getTime())
         cameraController.update()
-        #if os(macOS) || os(iOS)
         updateInspector()
-        #endif
     }
     
     override func draw(_ view: MTKView, _ commandBuffer: MTLCommandBuffer) {
@@ -178,8 +173,6 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     
     func updated(material: Material) {
         print("Material Updated: \(material.label)")
-        #if os(macOS) || os(iOS)
         _updateInspector = true
-        #endif
     }
 }

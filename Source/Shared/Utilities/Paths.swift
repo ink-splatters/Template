@@ -3,12 +3,11 @@
 //  Template
 //
 //  Created by Reza Ali on 8/18/21.
-//  Copyright © 2021 Reza Ali. All rights reserved.
+//  Copyright © 2022 Reza Ali. All rights reserved.
 //
 
 import Foundation
 import Satin
-
 
 public func fileExists(_ url: URL) -> Bool {
     let fm = FileManager.default

@@ -3,18 +3,15 @@
 //  Template Shared
 //
 //  Created by Reza Ali on 8/22/19.
-//  Copyright © 2019 Reza Ali. All rights reserved.
+//  Copyright © 2022 Reza Ali. All rights reserved.
 //
 
+import Foundation
+
 import Satin
-#if os(macOS) || os(iOS)
 import Youi
-#endif
 
 extension Renderer {
-    #if os(macOS) || os(iOS)
-    // MARK: - UI
-    
     func setupInspector() {
         var panelOpenStates: [String: Bool] = [:]
         if let inspectorWindow = self.inspectorWindow, let inspector = inspectorWindow.inspectorViewController {
@@ -74,14 +71,12 @@ extension Renderer {
         }
     }
     
-#endif
-    
-#if os(macOS)
+    #if os(macOS)
     public func toggleInspector()
     {
         if let inspectorWindow = self.inspectorWindow {
             inspectorWindow.setIsVisible(!inspectorWindow.isVisible)
         }
     }
-#endif
+    #endif
 }
