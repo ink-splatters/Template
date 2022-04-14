@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E10DA08727F6528200954442 /* Forge in Frameworks */ = {isa = PBXBuildFile; productRef = E10DA08627F6528200954442 /* Forge */; };
-		E10DA08A27F6529D00954442 /* Satin in Frameworks */ = {isa = PBXBuildFile; productRef = E10DA08927F6529D00954442 /* Satin */; };
-		E10DA08D27F652B400954442 /* Youi in Frameworks */ = {isa = PBXBuildFile; productRef = E10DA08C27F652B400954442 /* Youi */; };
-		E10DA08F27F652C600954442 /* Forge in Frameworks */ = {isa = PBXBuildFile; productRef = E10DA08E27F652C600954442 /* Forge */; };
-		E10DA09127F652C600954442 /* Satin in Frameworks */ = {isa = PBXBuildFile; productRef = E10DA09027F652C600954442 /* Satin */; };
-		E10DA09327F652C600954442 /* Youi in Frameworks */ = {isa = PBXBuildFile; productRef = E10DA09227F652C600954442 /* Youi */; };
 		E1365D1326CD912200BAFF71 /* Renderer+Save+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1365D1226CD912200BAFF71 /* Renderer+Save+Load.swift */; };
 		E1365D1426CD912200BAFF71 /* Renderer+Save+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1365D1226CD912200BAFF71 /* Renderer+Save+Load.swift */; };
 		E1365D1826CD919A00BAFF71 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1365D1726CD919A00BAFF71 /* Paths.swift */; };
@@ -27,13 +21,16 @@
 		E14B675225A785C900A9D59B /* Renderer+Inspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B674F25A785C800A9D59B /* Renderer+Inspector.swift */; };
 		E14B678025A7895D00A9D59B /* Renderer+LiveCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B677F25A7895D00A9D59B /* Renderer+LiveCode.swift */; };
 		E14B678125A7895D00A9D59B /* Renderer+LiveCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B677F25A7895D00A9D59B /* Renderer+LiveCode.swift */; };
+		E1739D8E2808994D006D79ED /* Satin in Frameworks */ = {isa = PBXBuildFile; productRef = E1739D8D2808994D006D79ED /* Satin */; };
+		E1739D9128089962006D79ED /* Youi in Frameworks */ = {isa = PBXBuildFile; productRef = E1739D9028089962006D79ED /* Youi */; };
+		E1739D9428089979006D79ED /* Forge in Frameworks */ = {isa = PBXBuildFile; productRef = E1739D9328089979006D79ED /* Forge */; };
+		E1739D9628089986006D79ED /* Satin in Frameworks */ = {isa = PBXBuildFile; productRef = E1739D9528089986006D79ED /* Satin */; };
+		E1739D9828089986006D79ED /* Youi in Frameworks */ = {isa = PBXBuildFile; productRef = E1739D9728089986006D79ED /* Youi */; };
+		E1739D9A28089986006D79ED /* Forge in Frameworks */ = {isa = PBXBuildFile; productRef = E1739D9928089986006D79ED /* Forge */; };
 		E1C45ADE243E6351007D0207 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C45ADD243E6351007D0207 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		235ADC7DECD164959E781434 /* Pods_Template_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Template_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		47B503526E3CE0B4E39C8334 /* Pods_Template_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Template_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		94125B265304CD9CDC73358B /* Pods_Template_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Template_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1365D1226CD912200BAFF71 /* Renderer+Save+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Renderer+Save+Load.swift"; sourceTree = "<group>"; };
 		E1365D1726CD919A00BAFF71 /* Paths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paths.swift; sourceTree = "<group>"; };
 		E1365D2526CD923C00BAFF71 /* Template.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Template.entitlements; sourceTree = "<group>"; };
@@ -48,7 +45,6 @@
 		E14B677F25A7895D00A9D59B /* Renderer+LiveCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Renderer+LiveCode.swift"; sourceTree = "<group>"; };
 		E1C45ADD243E6351007D0207 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		E1C45AFD243E6B9F007D0207 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1A9888FF9CA72677C1410C7 /* Pods_Example_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +52,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E10DA09127F652C600954442 /* Satin in Frameworks */,
-				E10DA08F27F652C600954442 /* Forge in Frameworks */,
-				E10DA09327F652C600954442 /* Youi in Frameworks */,
+				E1739D9A28089986006D79ED /* Forge in Frameworks */,
+				E1739D9828089986006D79ED /* Youi in Frameworks */,
+				E1739D9628089986006D79ED /* Satin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,26 +62,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E10DA08A27F6529D00954442 /* Satin in Frameworks */,
-				E10DA08727F6528200954442 /* Forge in Frameworks */,
-				E10DA08D27F652B400954442 /* Youi in Frameworks */,
+				E1739D9428089979006D79ED /* Forge in Frameworks */,
+				E1739D9128089962006D79ED /* Youi in Frameworks */,
+				E1739D8E2808994D006D79ED /* Satin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9E58469676EB2E6F14C21A65 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F1A9888FF9CA72677C1410C7 /* Pods_Example_macOS.framework */,
-				47B503526E3CE0B4E39C8334 /* Pods_Template_iOS.framework */,
-				235ADC7DECD164959E781434 /* Pods_Template_macOS.framework */,
-				94125B265304CD9CDC73358B /* Pods_Template_tvOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		E1365D1626CD918F00BAFF71 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +86,7 @@
 				E14B673C25A783DE00A9D59B /* Assets */,
 				E17955EA243FA74F00B0D2F4 /* Source */,
 				E13B5562230F3D44009E143D /* Products */,
-				9E58469676EB2E6F14C21A65 /* Frameworks */,
+				E1739D822805D5A9006D79ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +130,13 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		E1739D822805D5A9006D79ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E17955EA243FA74F00B0D2F4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,9 +164,9 @@
 			);
 			name = "Template iOS";
 			packageProductDependencies = (
-				E10DA08E27F652C600954442 /* Forge */,
-				E10DA09027F652C600954442 /* Satin */,
-				E10DA09227F652C600954442 /* Youi */,
+				E1739D9528089986006D79ED /* Satin */,
+				E1739D9728089986006D79ED /* Youi */,
+				E1739D9928089986006D79ED /* Forge */,
 			);
 			productName = "Example iOS";
 			productReference = E13B5561230F3D44009E143D /* Template.app */;
@@ -194,9 +186,9 @@
 			);
 			name = "Template macOS";
 			packageProductDependencies = (
-				E10DA08627F6528200954442 /* Forge */,
-				E10DA08927F6529D00954442 /* Satin */,
-				E10DA08C27F652B400954442 /* Youi */,
+				E1739D8D2808994D006D79ED /* Satin */,
+				E1739D9028089962006D79ED /* Youi */,
+				E1739D9328089979006D79ED /* Forge */,
 			);
 			productName = "Example macOS";
 			productReference = E13B5584230F3D44009E143D /* Template.app */;
@@ -230,9 +222,9 @@
 			);
 			mainGroup = E13B5553230F3D41009E143D;
 			packageReferences = (
-				E10DA08527F6528200954442 /* XCRemoteSwiftPackageReference "Forge" */,
-				E10DA08827F6529D00954442 /* XCRemoteSwiftPackageReference "Satin" */,
-				E10DA08B27F652B400954442 /* XCRemoteSwiftPackageReference "Youi" */,
+				E1739D8C2808994D006D79ED /* XCRemoteSwiftPackageReference "Satin" */,
+				E1739D8F28089962006D79ED /* XCRemoteSwiftPackageReference "Youi" */,
+				E1739D9228089979006D79ED /* XCRemoteSwiftPackageReference "Forge" */,
 			);
 			productRefGroup = E13B5562230F3D44009E143D /* Products */;
 			projectDirPath = "";
@@ -523,15 +515,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E10DA08527F6528200954442 /* XCRemoteSwiftPackageReference "Forge" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Hi-Rez/Forge";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		E10DA08827F6529D00954442 /* XCRemoteSwiftPackageReference "Satin" */ = {
+		E1739D8C2808994D006D79ED /* XCRemoteSwiftPackageReference "Satin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Hi-Rez/Satin";
 			requirement = {
@@ -539,9 +523,17 @@
 				kind = branch;
 			};
 		};
-		E10DA08B27F652B400954442 /* XCRemoteSwiftPackageReference "Youi" */ = {
+		E1739D8F28089962006D79ED /* XCRemoteSwiftPackageReference "Youi" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Hi-Rez/Youi";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		E1739D9228089979006D79ED /* XCRemoteSwiftPackageReference "Forge" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Hi-Rez/Forge";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -550,35 +542,35 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E10DA08627F6528200954442 /* Forge */ = {
+		E1739D8D2808994D006D79ED /* Satin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E10DA08527F6528200954442 /* XCRemoteSwiftPackageReference "Forge" */;
-			productName = Forge;
-		};
-		E10DA08927F6529D00954442 /* Satin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E10DA08827F6529D00954442 /* XCRemoteSwiftPackageReference "Satin" */;
+			package = E1739D8C2808994D006D79ED /* XCRemoteSwiftPackageReference "Satin" */;
 			productName = Satin;
 		};
-		E10DA08C27F652B400954442 /* Youi */ = {
+		E1739D9028089962006D79ED /* Youi */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E10DA08B27F652B400954442 /* XCRemoteSwiftPackageReference "Youi" */;
+			package = E1739D8F28089962006D79ED /* XCRemoteSwiftPackageReference "Youi" */;
 			productName = Youi;
 		};
-		E10DA08E27F652C600954442 /* Forge */ = {
+		E1739D9328089979006D79ED /* Forge */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E10DA08527F6528200954442 /* XCRemoteSwiftPackageReference "Forge" */;
+			package = E1739D9228089979006D79ED /* XCRemoteSwiftPackageReference "Forge" */;
 			productName = Forge;
 		};
-		E10DA09027F652C600954442 /* Satin */ = {
+		E1739D9528089986006D79ED /* Satin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E10DA08827F6529D00954442 /* XCRemoteSwiftPackageReference "Satin" */;
+			package = E1739D8C2808994D006D79ED /* XCRemoteSwiftPackageReference "Satin" */;
 			productName = Satin;
 		};
-		E10DA09227F652C600954442 /* Youi */ = {
+		E1739D9728089986006D79ED /* Youi */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E10DA08B27F652B400954442 /* XCRemoteSwiftPackageReference "Youi" */;
+			package = E1739D8F28089962006D79ED /* XCRemoteSwiftPackageReference "Youi" */;
 			productName = Youi;
+		};
+		E1739D9928089986006D79ED /* Forge */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1739D9228089979006D79ED /* XCRemoteSwiftPackageReference "Forge" */;
+			productName = Forge;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

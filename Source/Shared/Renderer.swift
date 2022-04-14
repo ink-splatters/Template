@@ -6,6 +6,7 @@
 //  Copyright © 2022 Reza Ali. All rights reserved.
 //
 
+import Combine
 import Metal
 import MetalKit
 
@@ -13,9 +14,9 @@ import Forge
 import Satin
 import Youi
 
-class BlobMaterial: LiveMaterial {}
-
 class Renderer: Forge.Renderer, MaterialDelegate {
+    class BlobMaterial: LiveMaterial {}
+    
     // MARK: - Paths
 
     var assetsURL: URL {
@@ -77,15 +78,18 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     var inspectorWindow: InspectorWindow?
     var _updateInspector: Bool = true
     
+    var cancellables = Set<AnyCancellable>()
+    
     lazy var bgColorParam: Float4Parameter = {
-        Float4Parameter("Background", [1, 1, 1, 1], .colorpicker) { [unowned self] value in
-            renderer.setClearColor(value)
+        let param = Float4Parameter("Background", [1, 1, 1, 1], .colorpicker) { [unowned self] value in
+            self.renderer.setClearColor(value)
         }
+        return param
     }()
     
     lazy var blobVisibleParam: BoolParameter = {
         let param = BoolParameter("Show Blob", true, .toggle) { [unowned self] value in
-            self.blobMesh.visible = value
+            blobMesh.visible = value
         }
         return param
     }()
@@ -128,7 +132,6 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     
     lazy var renderer: Satin.Renderer = {
         let renderer = Satin.Renderer(context: context, scene: scene, camera: camera)
-        renderer.setClearColor(bgColorParam.value)
         return renderer
     }()
     
@@ -143,7 +146,6 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     }
         
     deinit {
-        print("Saving")
         save()
     }
 
