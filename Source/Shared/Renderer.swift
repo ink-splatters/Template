@@ -19,48 +19,17 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     
     // MARK: - Paths
 
-    var assetsURL: URL {
-        getDocumentsAssetsDirectoryURL()
-    }
+    var assetsURL: URL { getDocumentsAssetsDirectoryURL() }
+    var mediaURL: URL { getDocumentsMediaDirectoryURL() }
+    var modelsURL: URL { getDocumentsMediaDirectoryURL() }
+    var parametersURL: URL { getDocumentsParametersDirectoryURL() }
+    var pipelinesURL: URL { getDocumentsPipelinesDirectoryURL() }
+    var presetsURL: URL { getDocumentsPresetsDirectoryURL() }
+    var settingsFolderURL: URL { getDocumentsSettingsDirectoryURL() }
+    var texturesURL: URL { getDocumentsTexturesDirectoryURL() }
+    var dataURL: URL { getDocumentsDataDirectoryURL() }
     
-    var mediaURL: URL {
-        getDocumentsMediaDirectoryURL()
-    }
-    
-    var modelsURL: URL {
-        getDocumentsMediaDirectoryURL()
-    }
-    
-    var parametersURL: URL {
-        getDocumentsParametersDirectoryURL()
-    }
-    
-    var pipelinesURL: URL {
-        getDocumentsPipelinesDirectoryURL()
-    }
-    
-    var presetsURL: URL {
-        getDocumentsPresetsDirectoryURL()
-    }
-    
-    var settingsFolderURL: URL {
-        getDocumentsSettingsDirectoryURL()
-    }
-    
-    var texturesURL: URL {
-        getDocumentsTexturesDirectoryURL()
-    }
-    
-    var dataURL: URL {
-        getDocumentsDataDirectoryURL()
-    }
-    
-    var paramKeys: [String] {
-        return [
-            "Controls",
-            "Blob Material",
-        ]
-    }
+    var paramKeys: [String] { return ["Controls", "Blob Material"] }
     
     var params: [String: ParameterGroup?] {
         return [
@@ -69,71 +38,28 @@ class Renderer: Forge.Renderer, MaterialDelegate {
         ]
     }
     
-    lazy var blobMaterial: BlobMaterial = {
-        let material = BlobMaterial(pipelinesURL: pipelinesURL)
-        material.delegate = self
-        return material
-    }()
+    // MARK: - UI
     
     var inspectorWindow: InspectorWindow?
     var _updateInspector: Bool = true
     
     var cancellables = Set<AnyCancellable>()
     
-    lazy var bgColorParam: Float4Parameter = {
-        let param = Float4Parameter("Background", [1, 1, 1, 1], .colorpicker) { [unowned self] value in
-            self.renderer.setClearColor(value)
-        }
-        return param
-    }()
+    var appParams: ParameterGroup!
+    var bgColorParam = Float4Parameter("Background", [1, 1, 1, 1], .colorpicker)
+    var blobVisibleParam = BoolParameter("Show Blob", true, .toggle)
     
-    lazy var blobVisibleParam: BoolParameter = {
-        let param = BoolParameter("Show Blob", true, .toggle) { [unowned self] value in
-            blobMesh.visible = value
-        }
-        return param
-    }()
+    // MARK: - 3D Scene
     
-    lazy var appParams: ParameterGroup = {
-        let params = ParameterGroup("Controls")
-        params.append(bgColorParam)
-        params.append(blobVisibleParam)
-        return params
-    }()
+    var scene = Object("Scene")
+    var blobMesh: Mesh!
+    var blobMaterial: BlobMaterial!
     
-    var blobGeo = IcoSphereGeometry(radius: 2.0, res: 5)
-    lazy var blobMesh: Mesh = {
-        let mesh = Mesh(geometry: blobGeo, material: blobMaterial)
-        mesh.label = "Blob"
-        return mesh
-    }()
+    var context: Context!
+    var camera = PerspectiveCamera(position: [0.0, 0.0, 10.0], near: 0.01, far: 100.0)
+    var cameraController: PerspectiveCameraController!
     
-    lazy var scene: Object = {
-        let scene = Object()
-        scene.add(blobMesh)
-        return scene
-    }()
-    
-    lazy var context: Context = {
-        Context(device, sampleCount, colorPixelFormat, depthPixelFormat, stencilPixelFormat)
-    }()
-    
-    lazy var camera: PerspectiveCamera = {
-        let camera = PerspectiveCamera()
-        camera.position = simd_make_float3(0.0, 0.0, 10.0)
-        camera.near = 0.01
-        camera.far = 100.0
-        return camera
-    }()
-    
-    lazy var cameraController: PerspectiveCameraController = {
-        PerspectiveCameraController(camera: camera, view: mtkView)
-    }()
-    
-    lazy var renderer: Satin.Renderer = {
-        let renderer = Satin.Renderer(context: context, scene: scene, camera: camera)
-        return renderer
-    }()
+    var renderer: Satin.Renderer!
     
     lazy var startTime: CFAbsoluteTime = {
         CFAbsoluteTimeGetCurrent()
@@ -150,7 +76,51 @@ class Renderer: Forge.Renderer, MaterialDelegate {
     }
 
     override func setup() {
+        setupContext()
+        setupCameraController()
+        setupScene()
+        setupRenderer()
+        setupParameters()
+        setupObservers()
         load()
+    }
+    
+    func setupContext() {
+        context = Context(device, sampleCount, colorPixelFormat, depthPixelFormat, stencilPixelFormat)
+    }
+
+    func setupCameraController() {
+        cameraController = PerspectiveCameraController(camera: camera, view: mtkView)
+    }
+
+    func setupScene() {
+        blobMaterial = BlobMaterial(pipelinesURL: pipelinesURL)
+        blobMaterial.delegate = self
+        blobMesh = Mesh(geometry: IcoSphereGeometry(radius: 2.0, res: 5), material: blobMaterial)
+        blobMesh.label = "Blob"
+        scene.add(blobMesh)
+    }
+    
+    func setupRenderer() {
+        renderer = Satin.Renderer(context: context, scene: scene, camera: camera)
+    }
+    
+    func setupParameters() {
+        appParams = ParameterGroup("Controls")
+        appParams.append(bgColorParam)
+        appParams.append(blobVisibleParam)
+    }
+    
+    func setupObservers() {
+        bgColorParam.$value.sink { [weak self] value in
+            guard let self = self else { return }
+            self.renderer.setClearColor(value)
+        }.store(in: &cancellables)
+        
+        blobVisibleParam.$value.sink { [weak self] value in
+            guard let self = self else { return }
+            self.blobMesh.visible = value
+        }.store(in: &cancellables)
     }
     
     func getTime() -> Float {
