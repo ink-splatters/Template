@@ -14,7 +14,7 @@ import Forge
 import Satin
 import Youi
 
-class Renderer: Forge.Renderer, MaterialDelegate {
+class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
     class BlobMaterial: LiveMaterial {}
     
     // MARK: - Paths

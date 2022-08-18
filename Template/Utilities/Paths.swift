@@ -355,6 +355,7 @@ func getPresets(_ loadUrl: URL) -> [String]
     let fm = FileManager.default
     var results: [String] = []
     let presetsUrl = loadUrl.appendingPathComponent("Presets")
+    print(presetsUrl.path)
     if fm.fileExists(atPath: presetsUrl.path)
     {
         do
