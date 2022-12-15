@@ -21,7 +21,7 @@ class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
 
     var assetsURL: URL { getDocumentsAssetsDirectoryURL() }
     var mediaURL: URL { getDocumentsMediaDirectoryURL() }
-    var modelsURL: URL { getDocumentsMediaDirectoryURL() }
+    var modelsURL: URL { getDocumentsModelsDirectoryURL() }
     var parametersURL: URL { getDocumentsParametersDirectoryURL() }
     var pipelinesURL: URL { getDocumentsPipelinesDirectoryURL() }
     var presetsURL: URL { getDocumentsPresetsDirectoryURL() }

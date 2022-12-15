@@ -32,11 +32,7 @@ extension Renderer {
     }
 
     func openEditor(at editorURL: URL) {
-        do {
-            try NSWorkspace.shared.open([self.assetsURL], withApplicationAt: editorURL, options: [], configuration: [:])
-        } catch {
-            print(error)
-        }
+        NSWorkspace.shared.open([self.assetsURL], withApplicationAt: editorURL, configuration: .init(), completionHandler: nil)
     }
 }
 

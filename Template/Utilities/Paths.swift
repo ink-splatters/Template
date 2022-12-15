@@ -9,7 +9,8 @@
 import Foundation
 import Satin
 
-public func fileExists(_ url: URL) -> Bool {
+public func fileExists(_ url: URL) -> Bool
+{
     let fm = FileManager.default
     return fm.fileExists(atPath: url.path)
 }
@@ -30,13 +31,16 @@ public func removeFile(_ url: URL)
     }
 }
 
-func createDirectory(_ url: URL) -> Bool {
+func createDirectory(_ url: URL) -> Bool
+{
     let fm = FileManager.default
-    do {
+    do
+    {
         try fm.createDirectory(at: url, withIntermediateDirectories: false, attributes: nil)
         return true
     }
-    catch {
+    catch
+    {
         print(error.localizedDescription)
         return false
     }
@@ -230,7 +234,6 @@ public func copyResourcesModelsToDocumentsDirectory(_ force: Bool = true)
     copyDirectory(atPath: getResourcesModelsDirectoryURL().path, toPath: getDocumentsModelsDirectoryURL().path, force: force)
 }
 
-
 public func copyResourcesSettingsToDocumentsDirectory(_ force: Bool = true)
 {
     copyDirectory(atPath: getResourcesSettingsDirectoryURL().path, toPath: getDocumentsSettingsDirectoryURL().path, force: force)
@@ -355,7 +358,6 @@ func getPresets(_ loadUrl: URL) -> [String]
     let fm = FileManager.default
     var results: [String] = []
     let presetsUrl = loadUrl.appendingPathComponent("Presets")
-    print(presetsUrl.path)
     if fm.fileExists(atPath: presetsUrl.path)
     {
         do

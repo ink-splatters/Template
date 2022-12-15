@@ -24,7 +24,6 @@ struct TemplateApp: App {
             ContentView(renderer: renderer)
                 .onAppear {
                     updatePresets()
-                    print(presets)
                 }
         }
 #if os(macOS)
