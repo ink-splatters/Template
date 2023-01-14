@@ -6,7 +6,7 @@
       "location" : "https://github.com/Hi-Rez/Forge",
       "state" : {
         "branch" : "master",
-        "revision" : "50407c40b433cf6eed786dc497b53916203f24bd"
+        "revision" : "0b115dd117307ac701677d85d79018f8afc9335f"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/Hi-Rez/Satin",
       "state" : {
         "branch" : "master",
-        "revision" : "c29677b9e7217c66511998fff10b72a00204f76a"
+        "revision" : "3cbc0b4b3cf404af8e30391d27aafb449f1f08fc"
       }
     },
     {

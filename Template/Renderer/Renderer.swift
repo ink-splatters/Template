@@ -51,19 +51,28 @@ class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
     
     // MARK: - 3D Scene
     
-    var scene = Object("Scene")
-    var blobMesh: Mesh!
-    var blobMaterial: BlobMaterial!
-    
-    var context: Context!
-    var camera = PerspectiveCamera(position: [0.0, 0.0, 10.0], near: 0.01, far: 100.0)
-    var cameraController: PerspectiveCameraController!
-    
-    var renderer: Satin.Renderer!
-    
-    lazy var startTime: CFAbsoluteTime = {
-        CFAbsoluteTimeGetCurrent()
+    lazy var scene = Object("Scene", [blobMesh])
+
+    lazy var blobMesh: Mesh = {
+        let mesh = Mesh(geometry: IcoSphereGeometry(radius: 2.0, res: 5), material: blobMaterial)
+        mesh.label = "Blob"
+        return mesh
     }()
+
+    lazy var blobMaterial: BlobMaterial = {
+        let material = BlobMaterial(pipelinesURL: pipelinesURL)
+        material.delegate = self
+        return material
+    }()
+
+    
+    var camera = PerspectiveCamera(position: [0.0, 0.0, 10.0], near: 0.01, far: 100.0)
+
+    lazy var context = Context(device, sampleCount, colorPixelFormat, depthPixelFormat, stencilPixelFormat)
+    lazy var cameraController = PerspectiveCameraController(camera: camera, view: mtkView)
+    lazy var renderer = Satin.Renderer(context: context)
+    
+    lazy var startTime: CFAbsoluteTime = { CFAbsoluteTimeGetCurrent() }()
     
     override func setupMtkView(_ metalKitView: MTKView) {
         metalKitView.sampleCount = 1
@@ -76,35 +85,11 @@ class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
     }
 
     override func setup() {
-        setupContext()
-        setupCameraController()
-        setupScene()
-        setupRenderer()
         setupParameters()
         setupObservers()
         load()
     }
-    
-    func setupContext() {
-        context = Context(device, sampleCount, colorPixelFormat, depthPixelFormat, stencilPixelFormat)
-    }
 
-    func setupCameraController() {
-        cameraController = PerspectiveCameraController(camera: camera, view: mtkView)
-    }
-
-    func setupScene() {
-        blobMaterial = BlobMaterial(pipelinesURL: pipelinesURL)
-        blobMaterial.delegate = self
-        blobMesh = Mesh(geometry: IcoSphereGeometry(radius: 2.0, res: 5), material: blobMaterial)
-        blobMesh.label = "Blob"
-        scene.add(blobMesh)
-    }
-    
-    func setupRenderer() {
-        renderer = Satin.Renderer(context: context, scene: scene, camera: camera)
-    }
-    
     func setupParameters() {
         appParams = ParameterGroup("Controls")
         appParams.append(bgColorParam)
@@ -135,7 +120,12 @@ class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
     
     override func draw(_ view: MTKView, _ commandBuffer: MTLCommandBuffer) {
         guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
-        renderer.draw(renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer)
+        renderer.draw(
+            renderPassDescriptor: renderPassDescriptor,
+            commandBuffer: commandBuffer,
+            scene: scene,
+            camera: camera
+        )
     }
     
     override func resize(_ size: (width: Float, height: Float)) {
