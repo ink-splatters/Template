@@ -36,7 +36,7 @@ func createDirectory(_ url: URL) -> Bool
     let fm = FileManager.default
     do
     {
-        try fm.createDirectory(at: url, withIntermediateDirectories: false, attributes: nil)
+        try fm.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
         return true
     }
     catch

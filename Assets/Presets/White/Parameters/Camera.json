@@ -1,0 +1,102 @@
+{
+  "translationScalar" : 0.5,
+  "mouseDeltaSensitivity" : 600,
+  "rollScalar" : 1,
+  "rollDamping" : 0.89999997615814209,
+  "zoomScalar" : 1,
+  "zoomDamping" : 0.89999997615814209,
+  "camera" : {
+    "near" : 0.0099999997764825821,
+    "position" : [
+      0,
+      0,
+      10
+    ],
+    "far" : 100,
+    "id" : "A7DF39CF-18AF-43BE-9DE3-83A6FA96EC1C",
+    "visible" : true,
+    "children" : [
+
+    ],
+    "aspect" : 1.0701545476913452,
+    "label" : "Object",
+    "fov" : 45,
+    "orientation" : {
+      "y" : 0,
+      "w" : 1,
+      "z" : 0,
+      "x" : 0
+    },
+    "scale" : [
+      1,
+      1,
+      1
+    ]
+  },
+  "defaultOrientation" : {
+    "y" : 0,
+    "w" : 1,
+    "z" : 0,
+    "x" : 0
+  },
+  "target" : {
+    "position" : [
+      0,
+      0,
+      0
+    ],
+    "id" : "167544F1-6747-401D-9580-BA7A7EF36063",
+    "visible" : true,
+    "children" : [
+      {
+        "near" : 0.0099999997764825821,
+        "position" : [
+          0,
+          0,
+          10
+        ],
+        "far" : 100,
+        "id" : "A7DF39CF-18AF-43BE-9DE3-83A6FA96EC1C",
+        "visible" : true,
+        "children" : [
+
+        ],
+        "aspect" : 1.0701545476913452,
+        "label" : "Object",
+        "fov" : 45,
+        "orientation" : {
+          "y" : 0,
+          "w" : 1,
+          "z" : 0,
+          "x" : 0
+        },
+        "scale" : [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "label" : "Perspective Camera Controller Target",
+    "orientation" : {
+      "y" : 0.53098118305206299,
+      "w" : 0.83731520175933838,
+      "z" : 0.052521556615829468,
+      "x" : -0.11917753517627716
+    },
+    "scale" : [
+      1,
+      1,
+      1
+    ]
+  },
+  "defaultPosition" : [
+    0,
+    0,
+    10
+  ],
+  "rotationDamping" : 0.89999997615814209,
+  "rotationScalar" : 2,
+  "scrollDeltaSensitivity" : 600,
+  "translationDamping" : 0.89999997615814209
+}

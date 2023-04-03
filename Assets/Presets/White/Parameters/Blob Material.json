@@ -1,0 +1,90 @@
+{
+  "label" : "Blob",
+  "params" : [
+    {
+      "type" : "float4",
+      "base" : {
+        "label" : "Color",
+        "value" : [
+          1,
+          1,
+          1,
+          1
+        ],
+        "min" : [
+          0,
+          0,
+          0,
+          0
+        ],
+        "controlType" : "colorpicker",
+        "max" : [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "type" : "float",
+      "base" : {
+        "label" : "Amplitude",
+        "value" : 1,
+        "min" : 0,
+        "controlType" : "slider",
+        "max" : 2
+      }
+    },
+    {
+      "type" : "float",
+      "base" : {
+        "label" : "Speed",
+        "value" : 0.5,
+        "min" : -1,
+        "controlType" : "slider",
+        "max" : 1
+      }
+    },
+    {
+      "type" : "float",
+      "base" : {
+        "label" : "Frequency",
+        "value" : 1,
+        "min" : 0,
+        "controlType" : "slider",
+        "max" : 2
+      }
+    },
+    {
+      "type" : "float",
+      "base" : {
+        "label" : "Color Scale",
+        "value" : 0.26175704598426819,
+        "min" : 0,
+        "controlType" : "slider",
+        "max" : 1
+      }
+    },
+    {
+      "type" : "float",
+      "base" : {
+        "label" : "Color Offset",
+        "value" : 0.34484145045280457,
+        "min" : 0,
+        "controlType" : "slider",
+        "max" : 1
+      }
+    },
+    {
+      "type" : "float",
+      "base" : {
+        "label" : "Time",
+        "value" : 12.384217262268066,
+        "min" : 0,
+        "controlType" : "none",
+        "max" : 1
+      }
+    }
+  ]
+}

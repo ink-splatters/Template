@@ -15,7 +15,7 @@ import Satin
 import Youi
 
 class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
-    class BlobMaterial: LiveMaterial {}
+    class BlobMaterial: SourceMaterial {}
     
     // MARK: - Paths
 
@@ -45,26 +45,15 @@ class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     
-    var appParams: ParameterGroup!
+    lazy var appParams = ParameterGroup("Controls", [bgColorParam])
     var bgColorParam = Float4Parameter("Background", [1, 1, 1, 1], .colorpicker)
-    var blobVisibleParam = BoolParameter("Show Blob", true, .toggle)
     
     // MARK: - 3D Scene
     
     lazy var scene = Object("Scene", [blobMesh])
 
-    lazy var blobMesh: Mesh = {
-        let mesh = Mesh(geometry: IcoSphereGeometry(radius: 2.0, res: 5), material: blobMaterial)
-        mesh.label = "Blob"
-        return mesh
-    }()
-
-    lazy var blobMaterial: BlobMaterial = {
-        let material = BlobMaterial(pipelinesURL: pipelinesURL)
-        material.delegate = self
-        return material
-    }()
-
+    lazy var blobMesh = Mesh(geometry: IcoSphereGeometry(radius: 2.0, res: 5), material: blobMaterial)
+    lazy var blobMaterial = BlobMaterial(pipelinesURL: pipelinesURL)
     
     var camera = PerspectiveCamera(position: [0.0, 0.0, 10.0], near: 0.01, far: 100.0)
 
@@ -85,26 +74,16 @@ class Renderer: Forge.Renderer, MaterialDelegate, ObservableObject {
     }
 
     override func setup() {
-        setupParameters()
         setupObservers()
+        blobMaterial.delegate = self
+        blobMaterial
         load()
     }
 
-    func setupParameters() {
-        appParams = ParameterGroup("Controls")
-        appParams.append(bgColorParam)
-        appParams.append(blobVisibleParam)
-    }
-    
     func setupObservers() {
         bgColorParam.$value.sink { [weak self] value in
             guard let self = self else { return }
             self.renderer.setClearColor(value)
-        }.store(in: &cancellables)
-        
-        blobVisibleParam.$value.sink { [weak self] value in
-            guard let self = self else { return }
-            self.blobMesh.visible = value
         }.store(in: &cancellables)
     }
     
